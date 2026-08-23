@@ -16,20 +16,22 @@ import httpx
 logger = logging.getLogger("hadeelbeauty.sheets")
 
 SHEETS_SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+DEFAULT_SHEET_TAB = "Feuille 1"
 _resolved_tab: str | None = None
+
+# Must match row 1 in "Order HadeelBeauty" Google Sheet.
 HEADERS = [
-    "التاريخ",
-    "رقم الطلب",
-    "الاسم",
-    "الجوال",
-    "الولاية",
-    "المدينة",
-    "العنوان",
-    "المنتجات",
-    "المجموع الفرعي",
-    "التوصيل",
-    "الإجمالي",
-    "الحالة",
+    "date",
+    "order id",
+    "wilaya",
+    "baladia",
+    "name",
+    "phone",
+    "product",
+    "sku",
+    "quantity",
+    "total price",
+    "delivery location",
 ]
 
 
@@ -39,51 +41,57 @@ def sheets_configured() -> bool:
     return bool(os.getenv("GOOGLE_SHEETS_WEBHOOK_URL", "").strip())
 
 
-def format_items(items: list[dict[str, Any]]) -> str:
-    parts: list[str] = []
-    for item in items:
-        name = item.get("name") or item.get("product_id") or "منتج"
-        qty = item.get("quantity", 1)
-        price = item.get("price", 0)
-        parts.append(f"{name} × {qty} ({price} دج)")
-    return " | ".join(parts)
-
-
-def build_order_payload(order: dict[str, Any], region_name: str, status: str = "مؤكد") -> dict[str, Any]:
-    items = order.get("items") or []
+def _parse_items(items: list[dict[str, Any]] | str) -> list[dict[str, Any]]:
     if isinstance(items, str):
-        items = json.loads(items)
+        return json.loads(items)
+    return items or []
 
-    subtotal = sum(int(item.get("price", 0)) * int(item.get("quantity", 1)) for item in items)
-    shipping = int(order.get("shipping_sar") or 0)
-    total = int(order.get("total_sar") or subtotal + shipping)
 
-    created = order.get("created_at")
+def _format_created(created: Any) -> str:
     if isinstance(created, datetime):
-        created_text = created.astimezone(timezone.utc).strftime("%Y-%m-%d %H:%M")
-    else:
-        created_text = str(created or "")
+        return created.astimezone(timezone.utc).strftime("%m/%d/%Y %H:%M")
+    return str(created or "")
 
-    row = [
-        created_text,
+
+def build_order_row(order: dict[str, Any], region_name: str, status: str = "Confirmed") -> list[Any]:
+    items = _parse_items(order.get("items") or [])
+    product_names: list[str] = []
+    skus: list[str] = []
+    quantities: list[str] = []
+
+    for item in items:
+        product_names.append(str(item.get("name") or item.get("product_id") or "منتج"))
+        skus.append(str(item.get("product_id") or item.get("sku") or ""))
+        quantities.append(str(item.get("quantity", 1)))
+
+    total = int(order.get("total_sar") or 0)
+
+    return [
+        _format_created(order.get("created_at")),
         order.get("id", ""),
-        order.get("name", ""),
-        order.get("phone_raw", ""),
         region_name,
         order.get("city", ""),
-        order.get("address", ""),
-        format_items(items),
-        subtotal,
-        shipping,
+        order.get("name", ""),
+        order.get("phone_raw", ""),
+        " / ".join(product_names),
+        " / ".join([s for s in skus if s]),
+        " / ".join(quantities) if quantities else "1",
         total,
-        status,
+        order.get("address", ""),
     ]
 
-    return {
-        "secret": os.getenv("GOOGLE_SHEETS_WEBHOOK_SECRET", "").strip(),
-        "row": row,
-        "orderId": order.get("id", ""),
-    }
+
+def build_order_payload(order: dict[str, Any], region_name: str, status: str = "Confirmed") -> dict[str, Any]:
+    row = build_order_row(order, region_name, status=status)
+    flat: dict[str, Any] = {"action": "append", "orderId": order.get("id", "")}
+    for header, value in zip(HEADERS, row, strict=True):
+        flat[header] = value
+
+    secret = os.getenv("GOOGLE_SHEETS_WEBHOOK_SECRET", "").strip()
+    if secret:
+        flat["secret"] = secret
+
+    return {"row": row, "flat": flat, "orderId": order.get("id", "")}
 
 
 def _service_account_info() -> dict[str, Any] | None:
@@ -133,9 +141,9 @@ async def _resolve_sheet_tab(token: str, sheet_id: str) -> str:
 
     sheets = data.get("sheets") or []
     if not sheets:
-        _resolved_tab = "Sheet1"
+        _resolved_tab = DEFAULT_SHEET_TAB
         return _resolved_tab
-    _resolved_tab = sheets[0].get("properties", {}).get("title") or "Sheet1"
+    _resolved_tab = sheets[0].get("properties", {}).get("title") or DEFAULT_SHEET_TAB
     return _resolved_tab
 
 
@@ -162,7 +170,7 @@ async def _sheets_put(token: str, sheet_id: str, range_a1: str, values: list[lis
 
 async def _ensure_headers(token: str, sheet_id: str) -> None:
     tab = await _resolve_sheet_tab(token, sheet_id)
-    header_range = f"'{tab}'!A1:L1"
+    header_range = f"'{tab}'!A1:K1"
     data = await _sheets_get(token, sheet_id, header_range)
     values = data.get("values") or []
     if values and any(str(cell).strip() for cell in values[0]):
@@ -180,7 +188,7 @@ async def _append_via_api(payload: dict[str, Any]) -> None:
     tab = await _resolve_sheet_tab(token, sheet_id)
     await _ensure_headers(token, sheet_id)
 
-    append_range = f"'{tab}'!A:L"
+    append_range = f"'{tab}'!A:K"
     url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}/values/{quote(append_range, safe='')}:append"
     params = {"valueInputOption": "USER_ENTERED", "insertDataOption": "INSERT_ROWS"}
     body = {"values": [payload["row"]]}
@@ -200,31 +208,39 @@ async def _append_via_webhook(payload: dict[str, Any]) -> None:
     if not webhook_url:
         return
 
-    async with httpx.AsyncClient(timeout=20.0, follow_redirects=True) as client:
-        response = await client.post(webhook_url, json=payload)
+    body = payload["flat"]
+    body_bytes = json.dumps(body, ensure_ascii=False).encode("utf-8")
+    headers = {"Content-Type": "text/plain; charset=utf-8"}
+
+    async with httpx.AsyncClient(timeout=20.0, follow_redirects=False) as client:
+        response = await client.post(webhook_url, content=body_bytes, headers=headers)
+        if response.status_code in (301, 302, 303, 307, 308):
+            location = response.headers.get("Location")
+            if location:
+                response = await client.get(location)
         response.raise_for_status()
 
 
-async def append_order_to_sheet(order: dict[str, Any], region_name: str, status: str = "مؤكد") -> None:
+async def append_order_to_sheet(order: dict[str, Any], region_name: str, status: str = "Confirmed") -> None:
     payload = build_order_payload(order, region_name, status=status)
 
     try:
-        if _service_account_info() is not None and os.getenv("GOOGLE_SHEETS_ID", "").strip():
-            await _append_via_api(payload)
-            logger.info("Order %s synced to Google Sheets (API)", payload["orderId"])
-            return
-
         if os.getenv("GOOGLE_SHEETS_WEBHOOK_URL", "").strip():
             await _append_via_webhook(payload)
             logger.info("Order %s synced to Google Sheets (webhook)", payload["orderId"])
             return
 
-        logger.debug("Google Sheets sync skipped — not configured")
+        if _service_account_info() is not None and os.getenv("GOOGLE_SHEETS_ID", "").strip():
+            await _append_via_api(payload)
+            logger.info("Order %s synced to Google Sheets (API)", payload["orderId"])
+            return
+
+        logger.warning("Google Sheets sync skipped — not configured")
     except Exception:
         logger.exception("Failed to sync order %s to Google Sheets", payload.get("orderId"))
 
 
-def schedule_order_sheet_sync(order: dict[str, Any], region_name: str, status: str = "مؤكد") -> None:
+def schedule_order_sheet_sync(order: dict[str, Any], region_name: str, status: str = "Confirmed") -> None:
     if not sheets_configured():
         return
     asyncio.create_task(append_order_to_sheet(order, region_name, status=status))
