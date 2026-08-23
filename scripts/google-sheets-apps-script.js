@@ -1,18 +1,8 @@
 /**
- * HadeelBeauty — Google Sheets order webhook
- *
- * 1. Open your sheet "Order HadeelBeauty" (tab: Feuille 1)
- * 2. Row 1 headers must be:
- *    date | order id | wilaya | baladia | name | phone | product | sku |
- *    quantity | total price | delivery location
- * 3. Extensions → Apps Script → paste this file → Save
- * 4. Deploy → New deployment → Web app
- *    - Execute as: Me
- *    - Who has access: Anyone
- * 5. Copy the /exec URL into Easypanel:
- *    GOOGLE_SHEETS_WEBHOOK_URL=https://script.google.com/macros/s/....../exec
+ * HadeelBeauty — Order HadeelBeauty sheet (Feuille 1)
+ * Headers: date | order id | wilaya | baladia | name | phone | product | sku |
+ *          quantity | total price | delivery location
  */
-
 const SHEET_NAME = "Feuille 1";
 
 const HEADERS = [
@@ -76,14 +66,18 @@ function doPost(e) {
     const rowData = rowFromPayload_(body);
     sheet.appendRow(rowData);
 
-    return jsonResponse_({ ok: true, action: "append", orderId: pick_(body, ["order id", "orderId", "order_id"]) });
+    return jsonResponse_({
+      ok: true,
+      action: "append",
+      orderId: pick_(body, ["order id", "orderId", "order_id"]),
+    });
   } catch (err) {
     return jsonResponse_({ ok: false, error: String(err) });
   }
 }
 
 function doGet() {
-  return jsonResponse_({ ok: true, service: "hadeelbeauty-sheets-webhook", method: "POST orders here" });
+  return jsonResponse_({ ok: true, service: "hadeelbeauty-sheets-webhook" });
 }
 
 function parseBody_(e) {
