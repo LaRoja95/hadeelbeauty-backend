@@ -203,12 +203,18 @@ def sha256(value: str) -> str:
 
 def normalize_phone(raw_phone: str) -> str:
     digits = re.sub(r"\D", "", raw_phone)
-    if not DZ_PHONE_RE.fullmatch(digits):
-        raise HTTPException(
-            status_code=422,
-            detail="رقم الهاتف يجب أن يبدأ بـ 05 أو 06 أو 07 ويتكون من 10 أرقام",
-        )
-    return "+213" + digits[1:]
+    if digits.startswith("213"):
+        rest = digits[3:]
+        if rest.startswith("0"):
+            rest = rest[1:]
+        if len(rest) == 9 and rest[0] in "567":
+            return "+213" + rest
+    if DZ_PHONE_RE.fullmatch(digits):
+        return "+213" + digits[1:]
+    raise HTTPException(
+        status_code=422,
+        detail="رقم الهاتف يجب أن يبدأ بـ 05 أو 06 أو 07 (10 أرقام) أو +213",
+    )
 
 
 def client_ip(request: Request) -> str:
