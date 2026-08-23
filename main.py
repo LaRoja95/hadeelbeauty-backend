@@ -40,6 +40,27 @@ DZ_PHONE_RE = re.compile(r"^0[5-7]\d{8}$")
 # Placeholder starter catalog — replace with real products/prices/images
 # before going live. Prices in Algerian Dinar (DZD).
 PRODUCTS: dict[str, dict[str, Any]] = {
+    "scar-gel-tcm": {
+        "name": "جل مرهم لإزالة آثار الندبات وحب الشباب",
+        "description": (
+            "تركيبة TCM بسنتيلا آسياتيكا ونياسيناميد — لتلطيف مظهر الندبات وآثار حب الشباب "
+            "وتوحيد لون البشرة. قوام شفاف سريع الامتصاص — 30 جرام."
+        ),
+        "price": 3990,
+        "image": "assets/products/scar-gel/hero-product.png",
+        "problem": "ندبات وآثار حب الشباب",
+        "images": [
+            "assets/products/scar-gel/hero-product.png",
+            "assets/products/scar-gel/v05-problems.png",
+            "assets/products/scar-gel/v02-scar-types.png",
+            "assets/products/scar-gel/v03-benefits.png",
+            "assets/products/scar-gel/v09-promo.png",
+            "assets/products/scar-gel/v06-features.png",
+            "assets/products/scar-gel/v08-ingredients.png",
+            "assets/products/scar-gel/v04-texture.png",
+            "assets/products/scar-gel/v07-specs.png",
+        ],
+    },
     "brush-cleanse": {
         "name": "فرشاة تنظيف الوجه الكهربائية",
         "description": "تنظيف عميق ولطيف للبشرة مع تدليك مريح، مقاومة للماء",
