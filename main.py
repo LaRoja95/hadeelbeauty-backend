@@ -66,7 +66,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "نياسيناميد 10% + زنك 1% — يضيّق المسام، يُقلّل الإفرازات الزيتية، "
             "ويُساعد على توحيد لون البشرة وتخفيف البقع الداكنة. 30 مل."
         ),
-        "price": 2490,
+        "price": 1990,
         "image": "assets/assets/products/niacinamide-serum/hero-product.png",
         "problem": "البشرة الدهنية والمسام الواسعة",
     },
@@ -76,7 +76,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "فيتامين سي 20% + حمض الفيروليك + فيتامين E — لتفتيح البشرة، "
             "محاربة آثار الشمس وعلامات التقدم في السن. يُستخدم صباحاً. 30 مل."
         ),
-        "price": 2990,
+        "price": 2490,
         "image": "assets/assets/products/vitamin-c-serum/hero-product.png",
         "problem": "البشرة الباهتة وآثار الشمس",
     },
@@ -86,7 +86,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "ألفا أربوتين 2% + حمض الكوجيك + فيتامين سي — لتوحيد لون البشرة "
             "وتفتيح البقع الداكنة والكلف. مناسب لجميع أنواع البشرة. 50 جرام."
         ),
-        "price": 2490,
+        "price": 1990,
         "image": "assets/assets/products/arbutin-cream/hero-product.png",
         "problem": "البقع الداكنة والكلف",
     },
@@ -96,7 +96,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "SPF 50+ · PA++++ — حماية عالية من أشعة UVA/UVB، قوام خفيف غير دهني "
             "لا يُبيّض البشرة. مناسب للاستخدام اليومي تحت المكياج. 50 مل."
         ),
-        "price": 2490,
+        "price": 1990,
         "image": "assets/assets/products/spf50-sunscreen/hero-product.png",
         "problem": "حماية البشرة من الشمس يومياً",
     },
@@ -106,7 +106,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "سيراميد + هيالورونيك أسيد + بانتينول — يُرمّم الحاجز الجلدي، "
             "يُرطّب البشرة الجافة والحساسة ويُخفّف الاحمرار والتهيّج. 50 جرام."
         ),
-        "price": 2990,
+        "price": 2490,
         "image": "assets/assets/products/ceramide-cream/hero-product.png",
         "problem": "البشرة الجافة والحساسة",
     },
@@ -116,7 +116,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "زيت إكليل الجبل + زيت الخروع + زيت الأرغان — يُحفّز نمو الشعر، "
             "يُقوّي الجذور ويُقلّل التساقط. مجرّب وفعّال — 60 مل."
         ),
-        "price": 2990,
+        "price": 2190,
         "image": "assets/assets/products/rosemary-hair-oil/hero-product.png",
         "problem": "تساقط الشعر وضعف النمو",
     },
@@ -126,7 +126,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "ريتينول 0.3% + هيالورونيك أسيد + توكوفيرول — يُجدّد خلايا البشرة ليلاً، "
             "يُقلّل التجاعيد والخطوط الدقيقة ويُوحّد الملمس. للبشرة العادية والمختلطة. 30 مل."
         ),
-        "price": 3490,
+        "price": 2990,
         "image": "assets/assets/products/retinol-serum/hero-product.png",
         "problem": "التجاعيد وعلامات التقدم في السن",
     },
