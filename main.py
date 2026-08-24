@@ -67,7 +67,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "ويُساعد على توحيد لون البشرة وتخفيف البقع الداكنة. 30 مل."
         ),
         "price": 2490,
-        "image": "assets/assets/products/niacinamide-serum/hero.svg",
+        "image": "assets/assets/products/niacinamide-serum/hero-product.png",
         "problem": "البشرة الدهنية والمسام الواسعة",
     },
     "vitamin-c-serum": {
@@ -77,7 +77,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "محاربة آثار الشمس وعلامات التقدم في السن. يُستخدم صباحاً. 30 مل."
         ),
         "price": 2990,
-        "image": "assets/assets/products/vitamin-c-serum/hero.svg",
+        "image": "assets/assets/products/vitamin-c-serum/hero-product.png",
         "problem": "البشرة الباهتة وآثار الشمس",
     },
     "arbutin-cream": {
@@ -87,7 +87,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "وتفتيح البقع الداكنة والكلف. مناسب لجميع أنواع البشرة. 50 جرام."
         ),
         "price": 2490,
-        "image": "assets/assets/products/arbutin-cream/hero.svg",
+        "image": "assets/assets/products/arbutin-cream/hero-product.png",
         "problem": "البقع الداكنة والكلف",
     },
     "spf50-sunscreen": {
@@ -97,7 +97,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "لا يُبيّض البشرة. مناسب للاستخدام اليومي تحت المكياج. 50 مل."
         ),
         "price": 2490,
-        "image": "assets/assets/products/spf50-sunscreen/hero.svg",
+        "image": "assets/assets/products/spf50-sunscreen/hero-product.png",
         "problem": "حماية البشرة من الشمس يومياً",
     },
     "ceramide-cream": {
@@ -107,7 +107,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "يُرطّب البشرة الجافة والحساسة ويُخفّف الاحمرار والتهيّج. 50 جرام."
         ),
         "price": 2990,
-        "image": "assets/assets/products/ceramide-cream/hero.svg",
+        "image": "assets/assets/products/ceramide-cream/hero-product.png",
         "problem": "البشرة الجافة والحساسة",
     },
     "rosemary-hair-oil": {
@@ -117,7 +117,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "يُقوّي الجذور ويُقلّل التساقط. مجرّب وفعّال — 60 مل."
         ),
         "price": 2990,
-        "image": "assets/assets/products/rosemary-hair-oil/hero.svg",
+        "image": "assets/assets/products/rosemary-hair-oil/hero-product.png",
         "problem": "تساقط الشعر وضعف النمو",
     },
     "retinol-serum": {
@@ -127,7 +127,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "يُقلّل التجاعيد والخطوط الدقيقة ويُوحّد الملمس. للبشرة العادية والمختلطة. 30 مل."
         ),
         "price": 3490,
-        "image": "assets/assets/products/retinol-serum/hero.svg",
+        "image": "assets/assets/products/retinol-serum/hero-product.png",
         "problem": "التجاعيد وعلامات التقدم في السن",
     },
 }
