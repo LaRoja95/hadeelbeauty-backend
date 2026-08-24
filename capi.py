@@ -162,6 +162,124 @@ async def dispatch_capi_event(
     if event_name not in STANDARD_EVENTS:
         log_capi("capi_skip", reason="unknown_event", event=event_name, event_id=event_id)
         return {"ok": False, "skipped": True, "reason": "unknown_event"}
-    return await send_tiktok_event(
+
+    results: dict[str, Any] = {}
+
+    # TikTok CAPI
+    results["tiktok"] = await send_tiktok_event(
         event_name=event_name, event_id=event_id, payload=payload, ip=ip, user_agent=user_agent
     )
+
+    # Meta CAPI
+    results["meta"] = await send_meta_event(
+        event_name=event_name, event_id=event_id, payload=payload, ip=ip, user_agent=user_agent
+    )
+
+    return results
+
+
+# ── Meta Conversions API ──────────────────────────────────────────────────────
+
+META_CAPI_URL = "https://graph.facebook.com/v19.0/{pixel_id}/events"
+
+# Map internal TikTok-style event names → Meta standard event names
+_META_EVENT_MAP: dict[str, str] = {
+    "PageView": "PageView",
+    "ViewContent": "ViewContent",
+    "AddToCart": "AddToCart",
+    "InitiateCheckout": "InitiateCheckout",
+    "CompletePayment": "Purchase",
+}
+
+
+def meta_config() -> tuple[str, str]:
+    pixel_id = os.getenv("META_PIXEL_ID", "").strip()
+    token = os.getenv("META_ACCESS_TOKEN", "").strip()
+    return pixel_id, token
+
+
+async def send_meta_event(
+    *,
+    event_name: str,
+    event_id: str,
+    payload: dict[str, Any],
+    ip: str,
+    user_agent: str,
+) -> dict[str, Any]:
+    pixel_id, token = meta_config()
+    if not pixel_id or not token:
+        log_capi("meta_skip", reason="not_configured", event=event_name, event_id=event_id)
+        return {"ok": False, "skipped": True, "reason": "not_configured"}
+
+    meta_event_name = _META_EVENT_MAP.get(event_name, event_name)
+
+    # User data — all fields hashed with SHA-256 as required by Meta
+    user_data: dict[str, Any] = {}
+    phone_raw = payload.get("phone", "")
+    if phone_raw:
+        digits = digits_only(phone_raw)
+        if digits.startswith("213"):
+            e164 = f"+{digits}"
+        elif digits.startswith("0"):
+            e164 = f"+213{digits[1:]}"
+        else:
+            e164 = f"+213{digits}"
+        user_data["ph"] = sha256_hex(e164)
+    if ip:
+        user_data["client_ip_address"] = ip
+    if user_agent:
+        user_data["client_user_agent"] = user_agent
+    if payload.get("fbp"):
+        user_data["fbp"] = payload["fbp"]
+    if payload.get("fbc"):
+        user_data["fbc"] = payload["fbc"]
+
+    # Custom data
+    custom_data: dict[str, Any] = {}
+    if payload.get("currency"):
+        custom_data["currency"] = payload["currency"]
+    if payload.get("value") is not None:
+        custom_data["value"] = float(payload["value"])
+    if payload.get("productIds"):
+        custom_data["content_ids"] = payload["productIds"]
+        custom_data["content_type"] = "product"
+        custom_data["contents"] = [
+            {"id": pid, "quantity": 1} for pid in payload["productIds"]
+        ]
+    if meta_event_name == "Purchase" and payload.get("value"):
+        custom_data["order_id"] = event_id
+
+    event: dict[str, Any] = {
+        "event_name": meta_event_name,
+        "event_time": int(time.time()),
+        "event_id": event_id,
+        "action_source": "website",
+        "user_data": user_data,
+    }
+    if custom_data:
+        event["custom_data"] = custom_data
+    if payload.get("pageUrl"):
+        event["event_source_url"] = payload["pageUrl"]
+
+    url = META_CAPI_URL.format(pixel_id=pixel_id)
+    body = {"data": [event]}
+
+    log_capi("meta_send", event=meta_event_name, event_id=event_id, pixel_id=pixel_id)
+
+    async with httpx.AsyncClient(timeout=12.0) as client:
+        response = await client.post(url, params={"access_token": token}, json=body)
+
+    ok = response.is_success
+    summary = response.text[:500]
+    try:
+        data = response.json()
+        summary = json.dumps(data, ensure_ascii=False)[:500]
+        ok = response.is_success and data.get("events_received", 0) > 0
+    except json.JSONDecodeError:
+        pass
+
+    if not ok:
+        logger.warning("meta_error event_id=%s status=%s body=%s", event_id, response.status_code, summary)
+
+    log_capi("meta_result", event=meta_event_name, event_id=event_id, status=response.status_code, ok=ok)
+    return {"ok": ok, "skipped": False, "status": response.status_code, "summary": summary}

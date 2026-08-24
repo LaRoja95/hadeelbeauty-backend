@@ -264,6 +264,9 @@ class PrepareOrderRequest(BaseModel):
 class CompleteOrderRequest(BaseModel):
     orderId: str
     eventId: str = ""
+    fbp: str = ""
+    fbc: str = ""
+    eventSourceUrl: str = ""
 
 
 class TrackingEventRequest(BaseModel):
@@ -475,10 +478,13 @@ async def complete_order(payload: CompleteOrderRequest, request: Request) -> dic
         "currency": "DZD",
         "phone": row["phone_e164"],
         "productIds": [item["product_id"] for item in items],
+        "fbp": payload.fbp or "",
+        "fbc": payload.fbc or "",
     }
     site_url = os.getenv("SITE_URL", "").strip().rstrip("/")
-    if site_url:
-        capi_payload["pageUrl"] = f"{site_url}/?order={payload.orderId}"
+    page_url = payload.eventSourceUrl or (f"{site_url}/?order={payload.orderId}" if site_url else "")
+    if page_url:
+        capi_payload["pageUrl"] = page_url
 
     asyncio.create_task(
         dispatch_capi_event(
