@@ -37,11 +37,10 @@ API_BUILD = "hadeelbeauty-api-1.0.0"
 DZ_PHONE_RE = re.compile(r"^0[5-7]\d{8}$")
 
 # --- Product catalog -------------------------------------------------------
-# Placeholder starter catalog — replace with real products/prices/images
-# before going live. Prices in Algerian Dinar (DZD).
+# Product catalog — Algerian beauty market trending products. Prices in DZD.
 PRODUCTS: dict[str, dict[str, Any]] = {
     "scar-gel-tcm": {
-        "name": "جل مرهم لإزالة آثار الندبات وحب الشباب",
+        "name": "جل إزالة آثار الندبات وحب الشباب",
         "description": (
             "تركيبة TCM بسنتيلا آسياتيكا ونياسيناميد — لتلطيف مظهر الندبات وآثار حب الشباب "
             "وتوحيد لون البشرة. قوام شفاف سريع الامتصاص — 30 جرام."
@@ -61,59 +60,75 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "assets/products/scar-gel/v07-specs.png",
         ],
     },
-    "brush-cleanse": {
-        "name": "فرشاة تنظيف الوجه الكهربائية",
-        "description": "تنظيف عميق ولطيف للبشرة مع تدليك مريح، مقاومة للماء",
-        "price": 3500,
-        "image": "",
+    "niacinamide-serum": {
+        "name": "سيروم نياسيناميد 10%",
+        "description": (
+            "نياسيناميد 10% + زنك 1% — يضيّق المسام، يُقلّل الإفرازات الزيتية، "
+            "ويُساعد على توحيد لون البشرة وتخفيف البقع الداكنة. 30 مل."
+        ),
+        "price": 2490,
+        "image": "assets/assets/products/niacinamide-serum/hero.svg",
+        "problem": "البشرة الدهنية والمسام الواسعة",
     },
-    "serum-vitc": {
-        "name": "سيروم فيتامين سي للوجه",
-        "description": "سيروم مضاد للأكسدة لتفتيح وتوحيد لون البشرة",
-        "price": 2800,
-        "image": "",
+    "vitamin-c-serum": {
+        "name": "سيروم فيتامين سي 20%",
+        "description": (
+            "فيتامين سي 20% + حمض الفيروليك + فيتامين E — لتفتيح البشرة، "
+            "محاربة آثار الشمس وعلامات التقدم في السن. يُستخدم صباحاً. 30 مل."
+        ),
+        "price": 2990,
+        "image": "assets/assets/products/vitamin-c-serum/hero.svg",
+        "problem": "البشرة الباهتة وآثار الشمس",
     },
-    "cream-hydra": {
-        "name": "كريم ترطيب مكثف",
-        "description": "ترطيب عميق لمدة 24 ساعة لجميع أنواع البشرة",
-        "price": 2200,
-        "image": "",
+    "arbutin-cream": {
+        "name": "كريم ألفا أربوتين للتفتيح",
+        "description": (
+            "ألفا أربوتين 2% + حمض الكوجيك + فيتامين سي — لتوحيد لون البشرة "
+            "وتفتيح البقع الداكنة والكلف. مناسب لجميع أنواع البشرة. 50 جرام."
+        ),
+        "price": 2490,
+        "image": "assets/assets/products/arbutin-cream/hero.svg",
+        "problem": "البقع الداكنة والكلف",
     },
-    "brow-tweezer": {
-        "name": "ملقط حواجب احترافي",
-        "description": "ملقط دقيق من الستانلس لنتف الحواجب بدقة",
-        "price": 900,
-        "image": "",
+    "spf50-sunscreen": {
+        "name": "واقي شمس SPF 50+ يومي",
+        "description": (
+            "SPF 50+ · PA++++ — حماية عالية من أشعة UVA/UVB، قوام خفيف غير دهني "
+            "لا يُبيّض البشرة. مناسب للاستخدام اليومي تحت المكياج. 50 مل."
+        ),
+        "price": 2490,
+        "image": "assets/assets/products/spf50-sunscreen/hero.svg",
+        "problem": "حماية البشرة من الشمس يومياً",
     },
-    "brush-set": {
-        "name": "مجموعة فرش مكياج (5 قطع)",
-        "description": "فرش مكياج ناعمة لتوزيع مثالي للكريم والبودرة والبلاشر",
-        "price": 3200,
-        "image": "",
+    "ceramide-cream": {
+        "name": "كريم السيراميد لإصلاح البشرة",
+        "description": (
+            "سيراميد + هيالورونيك أسيد + بانتينول — يُرمّم الحاجز الجلدي، "
+            "يُرطّب البشرة الجافة والحساسة ويُخفّف الاحمرار والتهيّج. 50 جرام."
+        ),
+        "price": 2990,
+        "image": "assets/assets/products/ceramide-cream/hero.svg",
+        "problem": "البشرة الجافة والحساسة",
     },
-    "sunscreen-spf50": {
-        "name": "واقي شمس SPF 50",
-        "description": "حماية عالية من أشعة الشمس بملمس خفيف غير دهني",
-        "price": 2500,
-        "image": "",
+    "rosemary-hair-oil": {
+        "name": "زيت إكليل الجبل لنمو الشعر",
+        "description": (
+            "زيت إكليل الجبل + زيت الخروع + زيت الأرغان — يُحفّز نمو الشعر، "
+            "يُقوّي الجذور ويُقلّل التساقط. مجرّب وفعّال — 60 مل."
+        ),
+        "price": 2990,
+        "image": "assets/assets/products/rosemary-hair-oil/hero.svg",
+        "problem": "تساقط الشعر وضعف النمو",
     },
-    "lip-tint": {
-        "name": "تينت شفاه طبيعي",
-        "description": "لون شفاه طبيعي يدوم طوال اليوم — تركيبة خفيفة ومرطبة",
-        "price": 1800,
-        "image": "",
-    },
-    "face-mask": {
-        "name": "قناع وجه بالطين",
-        "description": "تنظيف عميق للمسام وتنعيم البشرة — للاستخدام الأسبوعي",
-        "price": 1500,
-        "image": "",
-    },
-    "micellar-water": {
-        "name": "ماء ميسيلار للتنظيف",
-        "description": "يزيل المكياج وينظف البشرة بلطف — مناسب لجميع أنواع البشرة",
-        "price": 1900,
-        "image": "",
+    "retinol-serum": {
+        "name": "سيروم ريتينول ليلي 0.3%",
+        "description": (
+            "ريتينول 0.3% + هيالورونيك أسيد + توكوفيرول — يُجدّد خلايا البشرة ليلاً، "
+            "يُقلّل التجاعيد والخطوط الدقيقة ويُوحّد الملمس. للبشرة العادية والمختلطة. 30 مل."
+        ),
+        "price": 3490,
+        "image": "assets/assets/products/retinol-serum/hero.svg",
+        "problem": "التجاعيد وعلامات التقدم في السن",
     },
 }
 
