@@ -40,7 +40,7 @@ DZ_PHONE_RE = re.compile(r"^0[5-7]\d{8}$")
 # Product catalog — Algerian beauty market trending products. Prices in DZD.
 PRODUCTS: dict[str, dict[str, Any]] = {
     "scar-gel-tcm": {
-        "name": "جل إزالة آثار الندبات وحب الشباب",
+        "name": "مرهم ازالة الندبات",
         "description": (
             "تركيبة TCM بسنتيلا آسياتيكا ونياسيناميد — لتلطيف مظهر الندبات وآثار حب الشباب "
             "وتوحيد لون البشرة. قوام شفاف سريع الامتصاص — 30 جرام."
