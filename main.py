@@ -66,7 +66,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "NAD+ 5% + ريسفيراترول وببتيدات — مرطب للوجه ومحيط العين يدعم مظهراً أكثر حيوية "
             "وثباتاً للبشرة الباهتة. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/arencia-nad-booster/hero-product.png",
         "problem": "البشرة الباهتة والتعبة",
     },
@@ -76,7 +76,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "حمض الجليكوليك + BHA — تقشير لطيف لتنعيم الملمس وتخفيف مظهر الاحتقان "
             "والرؤوس السوداء. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/arencia-eraser-glycolic/hero-product.png",
         "problem": "الملمس الخشن والاحتقان",
     },
@@ -86,7 +86,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "TXA 5% + ببتيدات — يساعد على تلطيف مظهر البقع الداكنة وتوحيد اللون تدريجياً. "
             "للوجه ومحيط العين. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/arencia-txa-booster/hero-product.png",
         "problem": "البقع الداكنة وتفاوت اللون",
     },
@@ -96,7 +96,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "Rosy-PDRN 5% + ببتيدات — ترطيب للوجه ومحيط العين، تهدئة الاحمرار، "
             "ودعم مظهر بشرة مرتاحة. مناسب للبشرة الحساسة. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/arencia-pdrn-booster/hero-product.png",
         "problem": "الاحمرار والبشرة الحساسة",
     },
@@ -106,7 +106,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "ريتينال (مركب فيتامين A 2%) + كافيين — روتين ليلي لدعم مظهر أكثر ثباتاً ونعومة. "
             "للوجه ومحيط العين. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/arencia-retinal-booster/hero-product.png",
         "problem": "فقدان الثبات وعلامات التعب",
     },
@@ -116,7 +116,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "فيتامين سي 5% + جلوتاثيون — لإشراق البشرة وتلطيف مظهر البهتان. "
             "للوجه ومحيط العين. يُستخدم صباحاً مع واقي شمس. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/arencia-vitamin-c-booster/hero-product.png",
         "problem": "البشرة الباهتة وقلة الإشراق",
     },
@@ -125,7 +125,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "TXA + نياسيناميد 5% — كريم كبسولات يلطّف مظهر البقع الداكنة وتفاوت اللون. 55 جم."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/medicube-txa-niacinamide/hero-product.png",
         "problem": "البقع الداكنة وتفاوت اللون",
     },
@@ -134,7 +134,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "ماء فيتامين 50% + مشتقات فيتامين سي ونياسيناميد 5% — لإشراق البشرة وتلطيف مظهر البهتان. 55 جم."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/medicube-vita-c/hero-product.png",
         "problem": "البشرة الباهتة وقلة الإشراق",
     },
@@ -143,7 +143,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "هيالورونات الصوديوم + بانتينول — ترطيب لطيف ودعم مظهر الحاجز الجلدي. 55 جم."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/medicube-hyaluronic/hero-product.png",
         "problem": "الجفاف وقلة الترطيب",
     },
@@ -152,7 +152,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "حمض الكوجيك + كركم + نياسيناميد 5% — لتلطيف مظهر البهتان ودعم إشراق تدريجي. 53 جم."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/medicube-kojic-turmeric/hero-product.png",
         "problem": "البشرة الباهتة والبقع الخفيفة",
     },
@@ -161,7 +161,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "PDRN + نياسيناميد 5% — يدعم مظهراً أكثر تماسكًا ونعومة للبشرة المتعبة. 55 جم."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/medicube-pdrn-collagen/hero-product.png",
         "problem": "فقدان التماسك وعلامات التعب",
     },
@@ -170,7 +170,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "PDRN + هيالورونيك — كريم ترطيب يومي خفيف يدعم مظهراً أكثر نضارة. 60 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/anua-pdrn-hyaluron/hero-product.png",
         "problem": "الجفاف وقلة النضارة",
     },
@@ -179,7 +179,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "نياسيناميد 10% + TXA 4% — يساعد على تلطيف مظهر البقع الداكنة وتوحيد اللون. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/anua-niacinamide-txa/hero-product.png",
         "problem": "البقع الداكنة وتفاوت اللون",
     },
@@ -188,7 +188,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "ماء نخالة الأرز + بانتينول وهيالورونيك — رذاذ كريمي لترطيب خفيف خلال اليوم. 60 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/althea-345-mist/hero-product.png",
         "problem": "الجفاف والشدّ خلال اليوم",
     },
@@ -197,7 +197,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "نياسيناميد + بانتينول + سنتيلا — كريم جل خفيف خالٍ من العطر لتهدئة مظهر البشرة. 50 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/althea-345-cream/hero-product.png",
         "problem": "البشرة الحساسة وآثار البثور",
     },
@@ -206,7 +206,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "SPF50+ PA++++ — واقي شمس مرطّب بأرز وبروبيوتيك، أنسب للبشرة العادية والجافة. 50 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/joseon-relief-sun/hero-product.png",
         "problem": "الحماية اليومية من الشمس",
     },
@@ -215,7 +215,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "SPF50+ PA++++ — قوام جل مائي أخف، أنسب للبشرة المختلطة والدهنية. 50 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/joseon-aqua-fresh/hero-product.png",
         "problem": "الحماية اليومية بلمسة أخف",
     },
@@ -224,7 +224,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "description": (
             "جينسنغ + ريتينال — روتين ليلي يدعم مظهر محيط عين أكثر نعومة. 30 مل."
         ),
-        "price": 3900,
+        "price": 2500,
         "image": "assets/products/joseon-revive-eye/hero-product.png",
         "problem": "علامات التعب حول العين",
     },
@@ -234,7 +234,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "نياسيناميد 10% + زنك 1% — يضيّق المسام، يُقلّل الإفرازات الزيتية، "
             "ويُساعد على توحيد لون البشرة وتخفيف البقع الداكنة. 30 مل."
         ),
-        "price": 1990,
+        "price": 2200,
         "image": "assets/assets/products/niacinamide-serum/hero-product.png",
         "problem": "البشرة الدهنية والمسام الواسعة",
     },
@@ -244,7 +244,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "فيتامين سي 20% + حمض الفيروليك + فيتامين E — لتفتيح البشرة، "
             "محاربة آثار الشمس وعلامات التقدم في السن. يُستخدم صباحاً. 30 مل."
         ),
-        "price": 2490,
+        "price": 2500,
         "image": "assets/assets/products/vitamin-c-serum/hero-product.png",
         "problem": "البشرة الباهتة وآثار الشمس",
     },
@@ -254,7 +254,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "ألفا أربوتين 2% + حمض الكوجيك + فيتامين سي — لتوحيد لون البشرة "
             "وتفتيح البقع الداكنة والكلف. مناسب لجميع أنواع البشرة. 50 جرام."
         ),
-        "price": 1990,
+        "price": 2200,
         "image": "assets/assets/products/arbutin-cream/hero-product.png",
         "problem": "البقع الداكنة والكلف",
     },
@@ -264,7 +264,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "SPF 50+ · PA++++ — حماية عالية من أشعة UVA/UVB، قوام خفيف غير دهني "
             "لا يُبيّض البشرة. مناسب للاستخدام اليومي تحت المكياج. 50 مل."
         ),
-        "price": 1990,
+        "price": 2200,
         "image": "assets/assets/products/spf50-sunscreen/hero-product.png",
         "problem": "حماية البشرة من الشمس يومياً",
     },
@@ -274,7 +274,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "سيراميد + هيالورونيك أسيد + بانتينول — يُرمّم الحاجز الجلدي، "
             "يُرطّب البشرة الجافة والحساسة ويُخفّف الاحمرار والتهيّج. 50 جرام."
         ),
-        "price": 2490,
+        "price": 2500,
         "image": "assets/assets/products/ceramide-cream/hero-product.png",
         "problem": "البشرة الجافة والحساسة",
     },
@@ -284,7 +284,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "زيت إكليل الجبل + زيت الخروع + زيت الأرغان — يُحفّز نمو الشعر، "
             "يُقوّي الجذور ويُقلّل التساقط. مجرّب وفعّال — 60 مل."
         ),
-        "price": 2190,
+        "price": 2200,
         "image": "assets/assets/products/rosemary-hair-oil/hero-product.png",
         "problem": "تساقط الشعر وضعف النمو",
     },
@@ -294,7 +294,7 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "ريتينول 0.3% + هيالورونيك أسيد + توكوفيرول — يُجدّد خلايا البشرة ليلاً، "
             "يُقلّل التجاعيد والخطوط الدقيقة ويُوحّد الملمس. للبشرة العادية والمختلطة. 30 مل."
         ),
-        "price": 2990,
+        "price": 2900,
         "image": "assets/assets/products/retinol-serum/hero-product.png",
         "problem": "التجاعيد وعلامات التقدم في السن",
     },
