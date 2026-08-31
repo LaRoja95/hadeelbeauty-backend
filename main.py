@@ -60,6 +60,66 @@ PRODUCTS: dict[str, dict[str, Any]] = {
             "assets/products/scar-gel/v07-specs.png",
         ],
     },
+    "arencia-nad-booster": {
+        "name": "سيروم NAD+ لتجديد حيوية البشرة",
+        "description": (
+            "NAD+ 5% + ريسفيراترول وببتيدات — مرطب للوجه ومحيط العين يدعم مظهراً أكثر حيوية "
+            "وثباتاً للبشرة الباهتة. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/arencia-nad-booster/hero-product.png",
+        "problem": "البشرة الباهتة والتعبة",
+    },
+    "arencia-eraser-glycolic": {
+        "name": "بوستر حمض الجليكوليك لتنعيم البشرة",
+        "description": (
+            "حمض الجليكوليك + BHA — تقشير لطيف لتنعيم الملمس وتخفيف مظهر الاحتقان "
+            "والرؤوس السوداء. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/arencia-eraser-glycolic/hero-product.png",
+        "problem": "الملمس الخشن والاحتقان",
+    },
+    "arencia-txa-booster": {
+        "name": "سيروم TXA لتوحيد لون البشرة",
+        "description": (
+            "TXA 5% + ببتيدات — يساعد على تلطيف مظهر البقع الداكنة وتوحيد اللون تدريجياً. "
+            "للوجه ومحيط العين. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/arencia-txa-booster/hero-product.png",
+        "problem": "البقع الداكنة وتفاوت اللون",
+    },
+    "arencia-pdrn-booster": {
+        "name": "سيروم PDRN لتهدئة وتجديد البشرة",
+        "description": (
+            "Rosy-PDRN 5% + ببتيدات — ترطيب للوجه ومحيط العين، تهدئة الاحمرار، "
+            "ودعم مظهر بشرة مرتاحة. مناسب للبشرة الحساسة. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/arencia-pdrn-booster/hero-product.png",
+        "problem": "الاحمرار والبشرة الحساسة",
+    },
+    "arencia-retinal-booster": {
+        "name": "سيروم ريتينال ليلي لشد البشرة",
+        "description": (
+            "ريتينال (مركب فيتامين A 2%) + كافيين — روتين ليلي لدعم مظهر أكثر ثباتاً ونعومة. "
+            "للوجه ومحيط العين. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/arencia-retinal-booster/hero-product.png",
+        "problem": "فقدان الثبات وعلامات التعب",
+    },
+    "arencia-vitamin-c-booster": {
+        "name": "سيروم فيتامين سي + جلوتاثيون للإشراق",
+        "description": (
+            "فيتامين سي 5% + جلوتاثيون — لإشراق البشرة وتلطيف مظهر البهتان. "
+            "للوجه ومحيط العين. يُستخدم صباحاً مع واقي شمس. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/arencia-vitamin-c-booster/hero-product.png",
+        "problem": "البشرة الباهتة وقلة الإشراق",
+    },
     "niacinamide-serum": {
         "name": "سيروم نياسيناميد 10%",
         "description": (
