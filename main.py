@@ -120,6 +120,51 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "image": "assets/products/arencia-vitamin-c-booster/hero-product.png",
         "problem": "البشرة الباهتة وقلة الإشراق",
     },
+    "medicube-txa-niacinamide": {
+        "name": "كريم كبسولات TXA + نياسيناميد",
+        "description": (
+            "TXA + نياسيناميد 5% — كريم كبسولات يلطّف مظهر البقع الداكنة وتفاوت اللون. 55 جم."
+        ),
+        "price": 3900,
+        "image": "assets/products/medicube-txa-niacinamide/hero-product.png",
+        "problem": "البقع الداكنة وتفاوت اللون",
+    },
+    "medicube-vita-c": {
+        "name": "كريم كبسولات فيتامين سي",
+        "description": (
+            "ماء فيتامين 50% + مشتقات فيتامين سي ونياسيناميد 5% — لإشراق البشرة وتلطيف مظهر البهتان. 55 جم."
+        ),
+        "price": 3900,
+        "image": "assets/products/medicube-vita-c/hero-product.png",
+        "problem": "البشرة الباهتة وقلة الإشراق",
+    },
+    "medicube-hyaluronic": {
+        "name": "كريم كبسولات الهيالورونيك للترطيب",
+        "description": (
+            "هيالورونات الصوديوم + بانتينول — ترطيب لطيف ودعم مظهر الحاجز الجلدي. 55 جم."
+        ),
+        "price": 3900,
+        "image": "assets/products/medicube-hyaluronic/hero-product.png",
+        "problem": "الجفاف وقلة الترطيب",
+    },
+    "medicube-kojic-turmeric": {
+        "name": "كريم كبسولات كوجيك وكركم",
+        "description": (
+            "حمض الكوجيك + كركم + نياسيناميد 5% — لتلطيف مظهر البهتان ودعم إشراق تدريجي. 53 جم."
+        ),
+        "price": 3900,
+        "image": "assets/products/medicube-kojic-turmeric/hero-product.png",
+        "problem": "البشرة الباهتة والبقع الخفيفة",
+    },
+    "medicube-pdrn-collagen": {
+        "name": "كريم كبسولات PDRN والكولاجين الوردي",
+        "description": (
+            "PDRN + نياسيناميد 5% — يدعم مظهراً أكثر تماسكًا ونعومة للبشرة المتعبة. 55 جم."
+        ),
+        "price": 3900,
+        "image": "assets/products/medicube-pdrn-collagen/hero-product.png",
+        "problem": "فقدان التماسك وعلامات التعب",
+    },
     "niacinamide-serum": {
         "name": "سيروم نياسيناميد 10%",
         "description": (
