@@ -165,6 +165,69 @@ PRODUCTS: dict[str, dict[str, Any]] = {
         "image": "assets/products/medicube-pdrn-collagen/hero-product.png",
         "problem": "فقدان التماسك وعلامات التعب",
     },
+    "anua-pdrn-hyaluron": {
+        "name": "كريم Anua PDRN والهيالورونيك",
+        "description": (
+            "PDRN + هيالورونيك — كريم ترطيب يومي خفيف يدعم مظهراً أكثر نضارة. 60 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/anua-pdrn-hyaluron/hero-product.png",
+        "problem": "الجفاف وقلة النضارة",
+    },
+    "anua-niacinamide-txa": {
+        "name": "سيروم Anua نياسيناميد 10% + TXA 4%",
+        "description": (
+            "نياسيناميد 10% + TXA 4% — يساعد على تلطيف مظهر البقع الداكنة وتوحيد اللون. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/anua-niacinamide-txa/hero-product.png",
+        "problem": "البقع الداكنة وتفاوت اللون",
+    },
+    "althea-345-mist": {
+        "name": "رذاذ Dr. Althea 345 الكريمي",
+        "description": (
+            "ماء نخالة الأرز + بانتينول وهيالورونيك — رذاذ كريمي لترطيب خفيف خلال اليوم. 60 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/althea-345-mist/hero-product.png",
+        "problem": "الجفاف والشدّ خلال اليوم",
+    },
+    "althea-345-cream": {
+        "name": "كريم Dr. Althea 345 للتهدئة",
+        "description": (
+            "نياسيناميد + بانتينول + سنتيلا — كريم جل خفيف خالٍ من العطر لتهدئة مظهر البشرة. 50 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/althea-345-cream/hero-product.png",
+        "problem": "البشرة الحساسة وآثار البثور",
+    },
+    "joseon-relief-sun": {
+        "name": "واقي شمس Joseon بالأرز والبروبيوتيك",
+        "description": (
+            "SPF50+ PA++++ — واقي شمس مرطّب بأرز وبروبيوتيك، أنسب للبشرة العادية والجافة. 50 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/joseon-relief-sun/hero-product.png",
+        "problem": "الحماية اليومية من الشمس",
+    },
+    "joseon-aqua-fresh": {
+        "name": "واقي شمس Joseon Aqua-fresh",
+        "description": (
+            "SPF50+ PA++++ — قوام جل مائي أخف، أنسب للبشرة المختلطة والدهنية. 50 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/joseon-aqua-fresh/hero-product.png",
+        "problem": "الحماية اليومية بلمسة أخف",
+    },
+    "joseon-revive-eye": {
+        "name": "سيروم Joseon لمحيط العين",
+        "description": (
+            "جينسنغ + ريتينال — روتين ليلي يدعم مظهر محيط عين أكثر نعومة. 30 مل."
+        ),
+        "price": 3900,
+        "image": "assets/products/joseon-revive-eye/hero-product.png",
+        "problem": "علامات التعب حول العين",
+    },
     "niacinamide-serum": {
         "name": "سيروم نياسيناميد 10%",
         "description": (
